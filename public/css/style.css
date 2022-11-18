@@ -125,3 +125,19 @@ menu .user:hover {
   cursor: pointer;
   border-bottom: 7px solid gray;
 }
+
+/* --------vision---------- */
+.vision {
+  width: 75%;
+  display: flex;
+}
+
+.vision .achievement {
+  display: flex;
+  flex-direction: column;
+}
+
+.vision .sponsor {
+  width: 100px;
+  height: 100px;
+}

@@ -1,6 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -15,7 +16,8 @@ app.use(
 
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.engine(
   "hbs",
