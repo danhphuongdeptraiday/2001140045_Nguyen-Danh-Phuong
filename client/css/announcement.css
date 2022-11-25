@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* -------Menu-------- */
+menu {
+  background-color: gainsboro;
+  /* background-color: rgb(64, 105, 166); */
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+menu h2 {
+  font-family: "Pacifico", cursive;
+}
+
+menu ul {
+  display: flex;
+}
+
+menu ul a {
+  text-decoration: none;
+}
+
+menu ul a li {
+  padding: 20px;
+  font-size: 16px;
+  color: black;
+  list-style: none;
+  border-bottom: 5px /* rgb(64, 105, 166)  */ gainsboro solid;
+}
+
+menu ul a li:hover {
+  /* background-color: rgb(116, 117, 167); */
+  border-bottom: 5px rgb(112, 47, 47) solid;
+}
+
+menu .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px black solid;
+}
+
+menu .user:hover {
+  cursor: pointer;
+  background-color: rgb(123, 163, 224);
+}
+
+/* ------------Banner----------- */
+.banner {
+  width: 100%;
+  height: 500px;
+  background-color: rgb(111, 107, 107);
+  position: relative;
+}
+
+.banner .slogan {
+  color: aliceblue;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+}
+
+.slogan h1 {
+  margin-bottom: 10px;
+}
+
+/*  */
+.banner .level {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 75%;
+  height: 150px;
+}
+
+.learning_path {
+  font-weight: 600;
+}
+
+.level .kids {
+  display: flex;
+  padding-top: 30px;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 20px;
+  width: 30%;
+  background-color: rgb(220, 196, 97);
+}
+
+.level .teens {
+  display: flex;
+  padding-top: 30px;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20px;
+  padding-left: 25px;
+  width: 30%;
+  background-color: rgb(203, 131, 83);
+}
+
+.level .adults {
+  display: flex;
+  padding-top: 30px;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20px;
+  padding-left: 25px;
+  width: 30%;
+  background-color: rgb(194, 66, 66);
+}
+
+.kids:hover,
+.teens:hover,
+.adults:hover {
+  cursor: pointer;
+  border-bottom: 7px solid gray;
+}
+
+/* --------vision---------- */
+.vision {
+  margin: 180px auto 0;
+  width: 80%;
+  display: flex;
+  /* border: 2px solid red; */
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.vision .achievement {
+  padding: 50px 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement .intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.intro p + h1 {
+  align-items: center;
+}
+
+.intro h1 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.intro p {
+  font-size: 28px;
+}
+
+.vision .commitment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.commitment .salary {
+  width: 200px;
+  /* border: 2px solid red; */
+  margin: 20px 60px 20px 0;
+}
+
+.salary h1 {
+  text-align: center;
+}
+
+.salary p {
+  padding-top: 10px;
+  border-top: 2px solid red;
+  font-size: 20px;
+}
+
+.vision .sponsor {
+  width: 700px;
+  height: 600px;
+}
+
+.sponsor img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Footer */
+
+footer {
+  width: 100%;
+  height: 220px;
+  background-color: rgba(220, 220, 220, 0.596);
+  font-family: "Courier New", Courier, monospace;
+  position: relative;
+}
+
+.first_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 50px 20px;
+}
+
+.footer_information {
+  margin-left: 20px;
+}
+
+footer .hotline,
+.address {
+  font-size: 20px;
+}
+
+.gmail {
+  width: 500px;
+}
+
+.gmail #email {
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid green;
+}
+
+.gmail #submit_gmail {
+  padding: 10px 20px;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
+.gmail #submit_gmail:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.gmail h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.icon_container {
+  width: 200px;
+  background-color: gray;
+  height: 100px;
+  position: absolute;
+  bottom: 10;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+  left: 70px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.icon_container span i {
+  font-size: 30px;
+}
