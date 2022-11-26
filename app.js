@@ -3,6 +3,9 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+
+const sqlite = require("sqlite");
+const sqlite3 = require("sqlite3");
 require("dotenv").config();
 
 const app = express();
@@ -27,7 +30,20 @@ app.engine(
   })
 );
 
-app.set("view engine", ".hbs");
+async function getDBconnection() {
+  const db = await sqlite.open({
+    filename: "server/data.db",
+    driver: sqlite3.Database,
+  });
+  return db;
+}
+app.get("/test", async (req, res) => {
+  let db = await getDBconnection();
+  let insetData =
+    'insert into User ("UserId", "UserName", "Password") values (1, "Danh Phuong", "hello123")';
+  let rows = await db.exec(insetData);
+  console.log(rows);
+});
 
 app.get("/api/announcement", cors(), (req, res) => {
   const titleAnnouncement = {
