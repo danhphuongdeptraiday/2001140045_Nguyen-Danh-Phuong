@@ -52,10 +52,12 @@
     <!-- ---------------      Form    --------------------------  -->
     <form action="">
       <h1 class="form_title">Register Form</h1>
-      <span for="username1">Username</span>
-      <input type="text" id="username1" />
-      <span for="password1">Password</span>
-      <input type="text" id="password1" />
+      <span>Username</span>
+      <input type="text" id="username1" placeholder="Username" />
+      <p id="alertUserName"></p>
+      <span style="margin-top: 20px">Password</span>
+      <input type="text" id="password1" placeholder="Password" />
+      <p id="alertPassword"></p>
       <button id="register_btn">Register</button>
       <div id="login_btn"><a href="">Login</a></div>
     </form>
@@ -93,6 +95,6 @@
       </div>
     </footer>
 
-    <script src="../js/register.js"></script>
+    <script src="../js/register.js" defer></script>
   </body>
 </html>

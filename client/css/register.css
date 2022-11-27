@@ -87,9 +87,15 @@ form {
   width: 70%;
   padding: 10px 20px;
   margin-top: 5px;
-  margin-bottom: 20px;
   border-radius: 8px;
   outline: none;
+}
+
+#alertUserName,
+#alertPassword {
+  color: red;
+  width: 70%;
+  text-align: left;
 }
 
 #register_btn {
@@ -99,6 +105,7 @@ form {
   border-radius: 8px;
   border: 2px gainsboro solid;
   font-size: 16px;
+  margin-top: 15px;
 }
 
 #register_btn:hover {
@@ -136,8 +143,8 @@ footer {
   height: 220px;
   background-color: rgba(220, 220, 220, 0.596);
   font-family: "Courier New", Courier, monospace;
-  /* position: absolute;
-  bottom: 0; */
+  position: absolute;
+  bottom: 0;
 }
 
 .first_row {

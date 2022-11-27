@@ -37,12 +37,17 @@ async function getDBconnection() {
   });
   return db;
 }
-app.get("/test", async (req, res) => {
+
+app.get("/api/register", cors(), async (req, res) => {
   let db = await getDBconnection();
-  let insetData =
-    'insert into User ("UserId", "UserName", "Password") values (1, "Danh Phuong", "hello123")';
-  let rows = await db.exec(insetData);
+  // let insetData =
+  //   'insert into User (UserId, UserName, Password) values (1, "Danh Phuong", "hello123")';
+  let insetData = "Select * from User";
+  let rows = await db.all(insetData);
+  // console.log(JSON.stringify(rows));
   console.log(rows);
+  res.json(JSON.stringify(rows));
+  // console.log(rows[0].UserName);
 });
 
 app.get("/api/announcement", cors(), (req, res) => {
