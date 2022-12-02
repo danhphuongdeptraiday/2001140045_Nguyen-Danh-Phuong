@@ -12,3 +12,4 @@ fetch(api)
       p[i].innerText = arr[i];
     }
   });
+  

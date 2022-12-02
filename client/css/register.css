@@ -67,14 +67,20 @@ menu .user:hover {
 form {
   margin: 130px auto 50px;
   width: 400px;
-  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+form span {
+  font-weight: 700;
+  display: inline-block;
+  width: 70%;
 }
 
 .form_title {
@@ -83,19 +89,28 @@ form {
 }
 
 #username1,
-#password1 {
+#password1,
+#cfpassword {
   width: 70%;
   padding: 10px 20px;
   margin-top: 5px;
   border-radius: 8px;
   outline: none;
+  border: 1px gray solid;
 }
 
-#alertUserName,
-#alertPassword {
+.errorText {
   color: red;
   width: 70%;
   text-align: left;
+  margin-top: 5px;
+}
+
+.successText {
+  color: green;
+  width: 70%;
+  text-align: left;
+  margin-top: 5px;
 }
 
 #register_btn {
@@ -105,7 +120,7 @@ form {
   border-radius: 8px;
   border: 2px gainsboro solid;
   font-size: 16px;
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
 #register_btn:hover {
@@ -143,7 +158,7 @@ footer {
   height: 220px;
   background-color: rgba(220, 220, 220, 0.596);
   font-family: "Courier New", Courier, monospace;
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 

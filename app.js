@@ -38,16 +38,30 @@ async function getDBconnection() {
   return db;
 }
 
-app.get("/api/register", cors(), async (req, res) => {
-  let db = await getDBconnection();
-  // let insetData =
-  //   'insert into User (UserId, UserName, Password) values (1, "Danh Phuong", "hello123")';
-  let insetData = "Select * from User";
-  let rows = await db.all(insetData);
-  // console.log(JSON.stringify(rows));
-  console.log(rows);
-  res.json(JSON.stringify(rows));
-  // console.log(rows[0].UserName);
+app.post("/api/register", cors(), async (req, res) => {
+  // let db = await getDBconnection();
+  // // let insetData =
+  // //   'insert into User (UserId, UserName, Password) values (1, "Danh Phuong", "hello123")';
+  // let insetData = "Select * from User";
+  // let rows = await db.all(insetData);
+  // // console.log(JSON.stringify(rows));
+  // console.log(rows);
+  // res.json(JSON.stringify(rows));
+  // // console.log(rows[0].UserName);\
+  let out = {};
+
+  try {
+    console.log(req.body.name);
+    return res.json({
+      status: 200,
+      success: true,
+    });
+  } catch (err) {
+    return res.json({
+      status: 400,
+      success: false,
+    });
+  }
 });
 
 app.get("/api/announcement", cors(), (req, res) => {

@@ -1,30 +1,68 @@
+let userInput = document.getElementById("username1");
+let userPassword = document.getElementById("password1");
+let confirmPassword = document.getElementById("cfpassword");
+let form = document.getElementById("form");
+console.log(form);
+
 let registerAPI = "http://localhost:3000/api/register";
 
-document.getElementById("register_btn").addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  let userName = document.getElementById("username1").value;
-  let password = document.getElementById("password1").value;
-  let alertUsername = document.getElementById("alertUserName");
-  let alertPassword = document.getElementById("alertPassword");
-  if (userName != "" && password != "") {
-    let s1 = userName.trim();
-    let s2 = password.trim();
-    console.log(s1);
-    console.log(s2);
-  }
 
-  fetch(registerAPI)
-    .then((response) => {
-      return response.json();
-    })
+  const prePayload = new FormData(form);
+  const payload = new URLSearchParams(prePayload);
+  console.log([...payload]);
+  fetch(registerAPI, {
+    method: "POST",
+    // headers: new Headers({ "Content-Type": "applications/json" }),
+    body: JSON.stringify(payload),
+    mode: "no-cors",
+  })
+    .then((res) => res)
     .then((data) => {
-      let USER = JSON.parse(data);
-      for (let i = 0; i < USER.length; i++) {
-        if (userName == USER.userName) {
-        }
-      }
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
     });
-
-  if (userName.trim().length > 1 && password.trim().length > 1) {
-  }
 });
+let arrayInput = [userInput, userPassword, confirmPassword];
+checkEmpty(arrayInput);
+checkEqualPassword();
+
+function getSpecifiedTextError(rootInput) {
+  return rootInput.nextElementSibling;
+}
+
+function showError(rootInput, text) {
+  getSpecifiedTextError(rootInput).innerText = text;
+}
+
+function showSuccess(rootInput, text) {
+  let element = getSpecifiedTextError(rootInput);
+  element.innerText = text;
+  element.className = "successText";
+}
+
+function checkEqualPassword() {
+  if (userPassword.value === confirmPassword.value) {
+    let element = getSpecifiedTextError(confirmPassword);
+    element.innerText = "Matched password";
+    element.style.color = "green";
+  } else {
+    let element = getSpecifiedTextError(confirmPassword);
+    element.innerText = "Error confirm";
+    element.style.color = "red";
+  }
+}
+
+function checkEmpty(inputList) {
+  inputList.forEach((input) => {
+    // console.log(input);
+    if (!input.value) {
+      showError(input, "Your input is empty");
+    } else {
+      showSuccess(input, "Successfully");
+    }
+  });
+}
