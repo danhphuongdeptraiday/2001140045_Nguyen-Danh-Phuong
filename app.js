@@ -3,25 +3,26 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-
 const sqlite = require("sqlite");
 const sqlite3 = require("sqlite3");
-require("dotenv").config();
-
+const multer = require("multer");
+// require("dotenv").config();
 const app = express();
+const port = 3000;
 
-const port = process.env.PORT || 3000;
+app.use(cors());
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: false,
+//   })
+// );
 
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
-
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "client")));
+app.use(multer().none());
+app.use(express.urlencoded({ extended: false }));
 
 // app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, "public")));
 
 app.engine(
   "hbs",
@@ -35,36 +36,52 @@ async function getDBconnection() {
     filename: "server/data.db",
     driver: sqlite3.Database,
   });
+  // console.log(db);
   return db;
 }
-
-app.post("/api/register", cors(), async (req, res) => {
-  // let db = await getDBconnection();
-  // // let insetData =
-  // //   'insert into User (UserId, UserName, Password) values (1, "Danh Phuong", "hello123")';
-  // let insetData = "Select * from User";
-  // let rows = await db.all(insetData);
-  // // console.log(JSON.stringify(rows));
-  // console.log(rows);
-  // res.json(JSON.stringify(rows));
-  // // console.log(rows[0].UserName);\
-  let out = {};
-
+app.get("/home", async (req, res) => {
   try {
-    console.log(req.body.name);
-    return res.json({
-      status: 200,
-      success: true,
-    });
+    let db = await getDBconnection();
+    // await db.run(' Course where courseName like "Python"');
+    let s = await db.all("Select * from Course");
+    console.log(s);
+    db.close();
   } catch (err) {
-    return res.json({
-      status: 400,
-      success: false,
-    });
+    console.log(err);
   }
+
+  res.send("Succgess!!");
 });
 
-app.get("/api/announcement", cors(), (req, res) => {
+// const db = require("knex")({
+//   client: "sqlite3",
+//   connect: {
+//     filename: "server/data.db",
+//   },
+//   useNullAsDefault: true,
+// });
+
+// console.log(db("User").select("*"));
+
+app.post("/api/register", async (req, res) => {
+  let db = await getDBconnection();
+
+  console.log(req.body);
+  let username = req.body.username;
+  let password = req.body.password;
+
+  if (!username || !password) {
+    res.send("Fill full input");
+  } else {
+    res.send("success");
+    let insertData = "insert into User ( UserName, Password) values ( ?, ?)";
+    await db.run(insertData, [username, password]);
+    console.log("Insert success");
+  }
+  db.close();
+});
+
+app.get("/api/announcement", (req, res) => {
   const titleAnnouncement = {
     ann1: "Is the LMS salary committed to working in the international world.",
     ann2: "Students have graduated and gone out into the world from LMS.",

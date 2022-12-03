@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  /* max-height: 100vh; */
+}
+
+/* -------Menu-------- */
+menu {
+  background-color: gainsboro;
+  /* background-color: rgb(64, 105, 166); */
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+menu h2 {
+  font-family: "Pacifico", cursive;
+}
+
+menu ul {
+  display: flex;
+}
+
+menu ul a {
+  text-decoration: none;
+}
+
+menu ul a li {
+  padding: 20px;
+  font-size: 16px;
+  color: black;
+  list-style: none;
+  border-bottom: 5px /* rgb(64, 105, 166)  */ gainsboro solid;
+}
+
+menu ul a li:hover {
+  /* background-color: rgb(116, 117, 167); */
+  border-bottom: 5px rgb(112, 47, 47) solid;
+}
+
+menu .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px black solid;
+}
+
+menu .user:hover {
+  cursor: pointer;
+  background-color: rgb(123, 163, 224);
+}
+
+/* Form */
+form {
+  margin: 130px auto 50px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+form span {
+  font-weight: 700;
+  display: inline-block;
+  width: 70%;
+}
+
+.form_title {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+#username1,
+#password1,
+#cfpassword {
+  width: 70%;
+  padding: 10px 20px;
+  margin-top: 5px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px gray solid;
+}
+
+.errorText {
+  color: red;
+  width: 70%;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.successText {
+  color: green;
+  width: 70%;
+  text-align: left;
+  margin-top: 5px;
+}
+
+#register_btn {
+  width: 70%;
+  padding: 10px;
+  background-color: gainsboro;
+  border-radius: 8px;
+  border: 2px gainsboro solid;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+#register_btn:hover {
+  cursor: pointer;
+  background-color: rgba(159, 173, 134, 0.671);
+}
+
+#login_btn {
+  width: 70%;
+  background-color: rgb(61, 142, 61);
+  margin-top: 15px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+#login_btn:hover {
+  opacity: 0.8;
+}
+
+#login_btn a {
+  width: 100%;
+  padding: 10px;
+
+  text-align: center;
+  display: block;
+  color: white;
+  text-decoration: none;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  height: 220px;
+  background-color: rgba(220, 220, 220, 0.596);
+  font-family: "Courier New", Courier, monospace;
+  position: relative;
+  bottom: 0;
+}
+
+.first_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 50px 20px;
+}
+
+.footer_information {
+  margin-left: 20px;
+}
+
+footer .hotline,
+.address {
+  font-size: 20px;
+}
+
+.gmail {
+  width: 500px;
+}
+
+.gmail #email {
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid green;
+}
+
+.gmail #submit_gmail {
+  padding: 10px 20px;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
+.gmail #submit_gmail:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.gmail h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.icon_container {
+  width: 200px;
+  background-color: gray;
+  height: 100px;
+  position: absolute;
+  bottom: 20;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+  left: 70px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  transform: translateY(-55%);
+}
+
+.icon_container span i {
+  font-size: 30px;
+}
