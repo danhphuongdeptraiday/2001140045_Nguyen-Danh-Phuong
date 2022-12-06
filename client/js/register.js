@@ -3,28 +3,50 @@ let userPassword = document.getElementById("password1");
 let confirmPassword = document.getElementById("cfpassword");
 let form = document.getElementById("form");
 
-let registerAPI = "/api/register";
+let registerAPI = "http://localhost:3000/api/register";
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
-  const prePayload = new FormData(form);
-  // const payload = new URLSearchParams(prePayload);
-  fetch(registerAPI, {
-    method: "post",
-    body: prePayload,
-  })
-    .then((res) => res.text())
-    .then((bbb) => {
-      console.log("data is: " + bbb);
-      if (bbb == "success") {
-        console.log(bbb);
-        // window.location.href = "login.html";
-      }
+  if (userPassword.value !== confirmPassword.value) {
+    document.getElementById("cfpass").innerText = "Not match to password";
+  } else {
+    let userInformation = {
+      username: userInput.value,
+      password: userPassword.value,
+    };
+
+    fetch(registerAPI, {
+      method: "POSt",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInformation),
     })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((res) => {
+        return res.json();
+      })
+      .then((bbb) => {
+        let user = bbb;
+        console.log(user);
+        if (userInput.value == user.userName) {
+          document.getElementById("alertUserName").innerText = user.errUser;
+        }
+        if (userPassword.value == "") {
+          document.getElementById("alertPassword").innerText = user.errPassword;
+        }
+
+        if (user.message == "success") {
+          alert("Create successfully");
+          window.location.href = "login.html";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 });
+
+function checkUser() {}
 // let arrayInput = [userInput, userPassword, confirmPassword];
 // checkEmpty(arrayInput);
 // checkEqualPassword();

@@ -5,10 +5,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-body {
-  /* max-height: 100vh; */
-}
-
 /* -------Menu-------- */
 menu {
   background-color: gainsboro;
@@ -63,103 +59,69 @@ menu .user:hover {
   background-color: rgb(123, 163, 224);
 }
 
-/* Form */
-form {
-  margin: 130px auto 50px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+/* Main body */
+
+.container {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  margin: 80px auto 0;
+  padding: 40px 40px 40px 30px;
+  width: 100%;
+  background-color: rgb(149, 149, 149);
 }
 
-form span {
-  font-weight: 700;
-  display: inline-block;
-  width: 70%;
-}
-
-.form_title {
-  font-size: 30px;
+.courses {
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgb(203, 200, 200);
+  border-radius: 15px;
   margin-bottom: 30px;
+  transition: margin-top 1s;
 }
 
-#username1,
-#password1,
-#cfpassword {
-  width: 70%;
-  padding: 10px 20px;
-  margin-top: 5px;
-  border-radius: 8px;
-  outline: none;
-  border: 1px gray solid;
-}
-
-.errorText {
-  color: red;
-  width: 70%;
-  text-align: left;
-  margin-top: 5px;
-}
-
-.successText {
-  color: green;
-  width: 70%;
-  text-align: left;
-  margin-top: 5px;
-}
-
-#register_btn {
-  width: 70%;
-  padding: 10px;
-  background-color: gainsboro;
-  border-radius: 8px;
-  border: 2px gainsboro solid;
-  font-size: 16px;
-  margin-top: 30px;
-}
-
-#register_btn:hover {
+.courses:hover {
+  margin-top: -10px;
   cursor: pointer;
-  background-color: rgba(159, 173, 134, 0.671);
 }
 
-#login_btn {
-  width: 70%;
-  background-color: rgb(61, 142, 61);
-  margin-top: 15px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  border-radius: 8px;
+.courses h1 {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 28px;
 }
 
-#login_btn:hover {
+.courses img {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.courses button {
+  width: 75%;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  border-style: none;
+}
+
+.courses button:hover {
+  cursor: pointer;
   opacity: 0.8;
 }
 
-#login_btn a {
-  width: 100%;
-  padding: 10px;
-
-  text-align: center;
-  display: block;
-  color: white;
-  text-decoration: none;
-}
-
 /* Footer */
+
 footer {
   width: 100%;
   height: 220px;
   background-color: rgba(220, 220, 220, 0.596);
   font-family: "Courier New", Courier, monospace;
   position: relative;
-  bottom: 0;
 }
 
 .first_row {
@@ -212,13 +174,14 @@ footer .hotline,
   background-color: gray;
   height: 100px;
   position: absolute;
+  /* bottom: 10; */
   display: flex;
+  transform: translateY(-55%);
   justify-content: space-around;
   padding-top: 30px;
   left: 70px;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
-  transform: translateY(-55%);
 }
 
 .icon_container span i {

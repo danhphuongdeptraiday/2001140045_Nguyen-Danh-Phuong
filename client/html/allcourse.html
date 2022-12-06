@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-    <link rel="stylesheet" href="../css/register.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/allcourse.css" />
     <script
       src="https://kit.fontawesome.com/b25957ae4f.js"
       crossorigin="anonymous"
@@ -49,38 +49,43 @@
       </div>
     </menu>
 
-    <!-- ---------------      Form    --------------------------  -->
-    <form id="form" method="POSt">
-      <h1 class="form_title">Register Form</h1>
-      <!-- Username -->
-      <span>Username</span>
-      <input
-        type="text"
-        id="username1"
-        placeholder="Username"
-        required
-        name="username"
-      />
-      <p class="errorText" id="alertUserName"></p>
-      <!-- Password -->
-      <span style="margin-top: 20px">Password</span>
-      <input
-        type="password"
-        id="password1"
-        placeholder="Password"
-        name="password"
-      />
-      <p class="errorText" id="alertPassword"></p>
-      <!--  -->
-      <button type="submit" id="register_btn">Register</button>
-      <div id="login_btn"><a href="">Login</a></div>
-    </form>
+    <div class="container">
+      <div class="courses java">
+        <img src="../asset/java.jpg" alt="" />
+        <h1>Java Course</h1>
+        <button id="enroll">Enroll Course</button>
+      </div>
+      <div class="courses python">
+        <img src="../asset/python.jpg" alt="" />
+        <h1>Python Course</h1>
+        <button id="enroll">Enroll Course</button>
+      </div>
+      <div class="courses html">
+        <img src="../asset/html.jpg" alt="" />
+        <h1>HTML course</h1>
+        <button id="enroll">Enroll Course</button>
+      </div>
+      <div class="courses css">
+        <img src="../asset/css.jpg" alt="" />
+        <h1>CSS Course</h1>
+        <button id="enroll">Enroll Course</button>
+      </div>
+      <div class="courses php">
+        <img src="../asset/php.jpg" alt="" />
+        <h1>PHP Course</h1>
+        <button id="enroll">Enroll Course</button>
+      </div>
+      <div class="courses dsa">
+        <img src="../asset/dsa.jpg" alt="" />
+        <h1>DSA Course</h1>
+        <button id="enroll">Enroll Course</button>
+      </div>
+    </div>
 
-    <!-- -----------------    Footer    ------------------------------- -->
     <footer>
       <div class="first_row">
         <div class="footer_information">
-          <p class="hotline"><b>Hotline:</b> 0911734814</p>
+          <p class="hotline"><b>Hotline:</b> <span id="phoneNumber"></span></p>
           <p class="address"><b>Address:</b> Ha Noi University</p>
         </div>
 
@@ -108,8 +113,5 @@
         </span>
       </div>
     </footer>
-
-    <script src="../js/register.js" defer></script>
-    <script src=""></script>
   </body>
 </html>
