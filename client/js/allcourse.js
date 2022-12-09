@@ -1,23 +1,8 @@
-let api = "http://localhost:3000/api/announcement";
-
-fetch(api)
-  .then((response) => response.json())
-  .then((data) => {
-    let obj = JSON.parse(data);
-
-    let arr = Object.values(obj);
-    // console.log(arr);
-    let p = document.querySelectorAll(".salary p");
-    for (let i = 0; i < p.length; i++) {
-      p[i].innerText = arr[i];
-    }
-  });
+let api = "http://localhost:3000/api/all/courses";
 
 let userIcon = document.querySelector(".fa-user");
 let userContainer = document.querySelector(".user");
 let logout = document.querySelector(".logout");
-console.log(userIcon);
-console.log(document.cookie);
 if (document.cookie) {
   userIcon.style.display = "none";
   let h1 = document.createElement("h1");
@@ -39,6 +24,18 @@ if (document.cookie) {
       "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     location.reload();
   });
+
+  fetch(api, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+
   document.getElementById("register").removeAttribute("href");
   document.getElementById("login").removeAttribute("href");
 } else {

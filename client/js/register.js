@@ -11,8 +11,8 @@ form.addEventListener("submit", function (e) {
     document.getElementById("cfpass").innerText = "Not match to password";
   } else {
     let userInformation = {
-      username: userInput.value,
-      password: userPassword.value,
+      username: userInput.value.trim(),
+      password: userPassword.value.trim(),
     };
 
     fetch(registerAPI, {
@@ -36,15 +36,53 @@ form.addEventListener("submit", function (e) {
         }
 
         if (user.message == "success") {
-          alert("Create successfully");
+          alert("Create successfully. Go to the login page and ");
           window.location.href = "login.html";
         }
+        userInput.value = "";
+        userPassword.value = "";
+        confirmPassword.value = "";
       })
       .catch((err) => {
         console.log(err);
       });
   }
 });
+
+let userIcon = document.querySelector(".fa-user");
+let userContainer = document.querySelector(".user");
+let logout = document.querySelector(".logout");
+console.log(userIcon);
+console.log(document.cookie);
+if (document.cookie) {
+  userIcon.style.display = "none";
+  let h1 = document.createElement("h1");
+  h1.style.fontSize = "16px";
+  h1.innerText = document.cookie.split("=")[1];
+  userContainer.appendChild(h1);
+
+  logout.style.display = "none";
+  userContainer.addEventListener("click", () => {
+    if (logout.style.display == "block") {
+      logout.style.display = "none";
+    } else {
+      logout.style.display = "block";
+    }
+  });
+  logout.addEventListener("click", () => {
+    console.log("123");
+    document.cookie =
+      "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.reload();
+  });
+  document.getElementById("register").removeAttribute("href");
+  document.getElementById("login").removeAttribute("href");
+} else {
+  document.getElementById("register").href = "../html/register.html";
+  document.getElementById("login").href = "../html/login.html";
+  logout.style.display = "none";
+  console.log("empty");
+}
 
 function checkUser() {}
 // let arrayInput = [userInput, userPassword, confirmPassword];

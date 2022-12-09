@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-    <link rel="stylesheet" href="../css/register.css" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css" />
     <script
       src="https://kit.fontawesome.com/b25957ae4f.js"
       crossorigin="anonymous"
@@ -18,14 +18,6 @@
       <ul>
         <a href="../html/announcement.html">
           <li>Announcements</li>
-        </a>
-
-        <a href="../html/register.html">
-          <li>Register</li>
-        </a>
-
-        <a href="../html/login.html">
-          <li>Login</li>
         </a>
 
         <a href="">
@@ -43,15 +35,38 @@
         <a href="">
           <li>Do Quiz</li>
         </a>
+
+        <a id="register" href="../html/register.html">
+          <li>Register</li>
+        </a>
+
+        <a id="login" href="../html/login.html">
+          <li>Login</li>
+        </a>
       </ul>
       <div class="user">
         <i class="fa-solid fa-user"></i>
       </div>
+
+      <div class="logout">
+        <span> LOG OUT </span>
+      </div>
     </menu>
 
-    <!-- ---------------      Form    --------------------------  -->
-    <form id="form" method="POSt">
-      <h1 class="form_title">Register Form</h1>
+    <div class="bgShadow">
+      <div class="countDount">
+        <h1>
+          Login successful !
+          <br />
+          Changing to all course in...
+          <br />
+          <span id="count"></span>
+        </h1>
+      </div>
+    </div>
+    <!-- ---------------      Form    -------------------------- -->
+    <form id="form" method="POST">
+      <h1 class="form_title">Login Form</h1>
       <!-- Username -->
       <span>Username</span>
       <input
@@ -72,8 +87,7 @@
       />
       <p class="errorText" id="alertPassword"></p>
       <!--  -->
-      <button type="submit" id="register_btn">Register</button>
-      <div id="login_btn"><a href="">Login</a></div>
+      <button type="submit" id="register_btn">Login</button>
     </form>
 
     <!-- -----------------    Footer    ------------------------------- -->
@@ -109,7 +123,6 @@
       </div>
     </footer>
 
-    <script src="../js/register.js" defer></script>
-    <script src=""></script>
+    <script src="../js/login.js" defer></script>
   </body>
 </html>

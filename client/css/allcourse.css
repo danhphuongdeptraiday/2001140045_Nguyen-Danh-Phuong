@@ -48,15 +48,45 @@ menu .user {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45px;
+  width: 130px;
   height: 45px;
-  border-radius: 50%;
+  border-radius: 10px;
   border: 2px black solid;
 }
 
 menu .user:hover {
   cursor: pointer;
   background-color: rgb(123, 163, 224);
+}
+
+.logout {
+  right: 2%;
+  top: 10%;
+  position: fixed;
+  width: 80px;
+  height: 40px;
+  background-color: rgb(138, 60, 60);
+  color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: auto;
+  /* position: relative; */
+}
+
+.logout span {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logout:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 /* Main body */
@@ -69,7 +99,7 @@ menu .user:hover {
   margin: 80px auto 0;
   padding: 40px 40px 40px 30px;
   width: 100%;
-  background-color: rgb(149, 149, 149);
+  /* background-color: rgb(149, 149, 149); */
 }
 
 .courses {
@@ -78,7 +108,8 @@ menu .user:hover {
   border: 2px solid rgb(203, 200, 200);
   border-radius: 15px;
   margin-bottom: 30px;
-  transition: margin-top 1s;
+  transition: margin-top 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .courses:hover {

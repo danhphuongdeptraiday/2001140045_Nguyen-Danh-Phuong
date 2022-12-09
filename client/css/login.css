@@ -52,15 +52,73 @@ menu .user {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45px;
+  width: 130px;
   height: 45px;
-  border-radius: 50%;
+  border-radius: 10px;
   border: 2px black solid;
 }
 
 menu .user:hover {
   cursor: pointer;
   background-color: rgb(123, 163, 224);
+}
+
+.logout {
+  right: 2%;
+  top: 10%;
+  position: fixed;
+  width: 80px;
+  height: 40px;
+  background-color: rgb(138, 60, 60);
+  color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: auto;
+  /* position: relative; */
+}
+
+.logout span {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logout:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+/* Background-shadow */
+
+.bgShadow {
+  display: none;
+  z-index: 10;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.countDount {
+  width: 350px;
+  height: 180px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: antiquewhite;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
 }
 
 /* Form */
@@ -116,7 +174,8 @@ form span {
 #register_btn {
   width: 70%;
   padding: 10px;
-  background-color: gainsboro;
+  background-color: rgb(61, 142, 61);
+
   border-radius: 8px;
   border: 2px gainsboro solid;
   font-size: 16px;
@@ -125,7 +184,7 @@ form span {
 
 #register_btn:hover {
   cursor: pointer;
-  background-color: rgba(159, 173, 134, 0.671);
+  opacity: 0.3;
 }
 
 #login_btn {

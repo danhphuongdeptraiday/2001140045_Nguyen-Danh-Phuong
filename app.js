@@ -7,10 +7,11 @@ const sqlite = require("sqlite");
 const sqlite3 = require("sqlite3");
 const multer = require("multer");
 const { json } = require("body-parser");
+const cookieParser = require("cookie-parser");
 // require("dotenv").config();
 const app = express();
 const port = 3000;
-
+app.use(cookieParser());
 app.use(cors());
 app.use(
   bodyParser.urlencoded({
@@ -40,48 +41,82 @@ async function getDBconnection() {
   });
   return db;
 }
+
+app.get("/api/announcement", (req, res) => {
+  const titleAnnouncement = {
+    ann1: "Is the LMS salary committed to working in the international world.",
+    ann2: "Students have graduated and gone out into the world from LMS.",
+    ann3: "Students are studying and working in 12 countries around the world.",
+    ann4: "Is the average salary received by students after 1.5 - 3 years of graduating from LMS.",
+  };
+
+  res.json(JSON.stringify(titleAnnouncement));
+});
+
+// allCourse
 app.get("/api/all/courses", async (req, res) => {
+  console.log(req.cookies);
   try {
     let db = await getDBconnection();
-    // await db.run(' Course where courseName like "Python"');
-    let s = await db.all("Select * from Course");
-    console.log(s);
+    if (req.cookies) {
+      let s = await db.all(
+        "select * from Course where courseId not in (select courseId from enrollment where userId = (select UserId from User where UserName = ?))",
+        req.cookies.username
+      );
+
+      res.json(s);
+    }
     db.close();
   } catch (err) {
     console.log(err);
   }
 
-  res.send("Succgess!!");
+  // res.send("Succgess!!");
 });
 
-// const db = require("knex")({
-//   client: "sqlite3",
-//   connect: {
-//     filename: "server/data.db",
-//   },
-//   useNullAsDefault: true,
-// });
-
-// console.log(db("User").select("*"));
-
-app.get("/abc", async (req, res) => {
-  let db = await getDBconnection();
-  let selectUsername = "Select UserName from User";
-  let listUserName = await db.all(selectUsername);
-  res.send("hello");
-});
-
+// Login
 app.get("/api/login", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/html/login.html"));
 });
 
+app.post("/api/login", async (req, res) => {
+  let db = await getDBconnection();
+  let username = req.body.username;
+  let password = req.body.password;
+  console.log(req.body);
+  if (username === "" || password === "") {
+    res.json({
+      errMessage: "Username and password have to be required",
+    });
+  }
+
+  let s = "Select UserName from User where UserName = ? and Password = ?";
+  let a = await db.all(s, [username, password]);
+  console.log(a);
+  if (a.length < 1) {
+    res.json({
+      message: "Wrong username or password",
+    });
+    return;
+  } else {
+    res.cookie("username", a[0].UserName, {
+      expires: new Date("2023-01-01"),
+    });
+    res.send(true);
+    console.log("success");
+  }
+
+  db.close();
+});
+
+// Register
 app.get("/api/register", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/html/register.html"));
 });
 
 app.post("/api/register", async (req, res) => {
   let db = await getDBconnection();
-  console.log(req.body);
+  console.log("register: " + JSON.stringify(req.body));
   let username = req.body.username;
   let password = req.body.password;
   // Check username
@@ -103,7 +138,6 @@ app.post("/api/register", async (req, res) => {
   // Check password
   let checkPassword = true;
   if (password === "") {
-    // errors.push("Your password is empty");
     res.json({
       errPassword: "Your password is empty",
     });
@@ -135,21 +169,13 @@ app.post("/api/register", async (req, res) => {
   db.close();
 });
 
-app.get("/api/login", (req, res) => {
-  res.sendFile();
-});
-
-app.get("/api/announcement", (req, res) => {
-  const titleAnnouncement = {
-    ann1: "Is the LMS salary committed to working in the international world.",
-    ann2: "Students have graduated and gone out into the world from LMS.",
-    ann3: "Students are studying and working in 12 countries around the world.",
-    ann4: "Is the average salary received by students after 1.5 - 3 years of graduating from LMS.",
-  };
-
-  res.json(JSON.stringify(titleAnnouncement));
-  // res.render("announcement", titleAnnouncement);
-  // .json(JSON.stringify(titleAnnouncement));
+app.get("/abc", async (req, res) => {
+  let db = await getDBconnection();
+  let s = await db.all(
+    "select * from Course where courseId not in (select courseId from enrollment where userId = 1)"
+  );
+  res.send(s);
+  console.log(s);
 });
 
 app.listen(port, () => console.log(`Listening on ${port} `));
