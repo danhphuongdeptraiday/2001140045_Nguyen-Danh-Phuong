@@ -53,6 +53,28 @@ app.get("/api/announcement", (req, res) => {
   res.json(JSON.stringify(titleAnnouncement));
 });
 
+// My Course
+app.get("/api/my/courses", async (req, res) => {
+  console.log(req.cookies);
+  try {
+    let db = await getDBconnection();
+    if (req.cookies) {
+      let s = await db.all(
+        "select * from Course where courseId in (select courseId from enrollment where userId = (select UserId from User where UserName = ?))",
+        req.cookies.username
+      );
+      console.log(s);
+      if (s) {
+        res.json(s);
+        console.log(s);
+      }
+    }
+    await db.close();
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // allCourse
 app.get("/api/all/courses", async (req, res) => {
   console.log(req.cookies);
@@ -63,15 +85,31 @@ app.get("/api/all/courses", async (req, res) => {
         "select * from Course where courseId not in (select courseId from enrollment where userId = (select UserId from User where UserName = ?))",
         req.cookies.username
       );
-
       res.json(s);
     }
+
     db.close();
   } catch (err) {
     console.log(err);
   }
+});
 
-  // res.send("Succgess!!");
+app.get("/api/enroll/:username/:courseid", async (req, res) => {
+  console.log(req.params);
+  let db = await getDBconnection();
+  if (req.cookies.username) {
+    let userId = await db.get(
+      "select userid from user where username = ?",
+      req.params.username
+    );
+    console.log(userId);
+    let insertSQL = "insert into enrollment (UserId, CourseId) values (?,?)";
+    await db.run(insertSQL, [userId.UserId, req.params.courseid]);
+  }
+  res.json({
+    username: req.params.username,
+    courseid: req.params.courseid,
+  });
 });
 
 // Login
@@ -90,7 +128,8 @@ app.post("/api/login", async (req, res) => {
     });
   }
 
-  let s = "Select UserName from User where UserName = ? and Password = ?";
+  let s =
+    "Select UserId, UserName from User where UserName = ? and Password = ?";
   let a = await db.all(s, [username, password]);
   console.log(a);
   if (a.length < 1) {
@@ -99,6 +138,7 @@ app.post("/api/login", async (req, res) => {
     });
     return;
   } else {
+    console.log(a[0].UserId);
     res.cookie("username", a[0].UserName, {
       expires: new Date("2023-01-01"),
     });
@@ -114,6 +154,10 @@ app.get("/api/register", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/html/register.html"));
 });
 
+app.get("/api/home", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/html/home.html"));
+});
+
 app.post("/api/register", async (req, res) => {
   let db = await getDBconnection();
   console.log("register: " + JSON.stringify(req.body));
@@ -125,7 +169,6 @@ app.post("/api/register", async (req, res) => {
   let listUserName = await db.all(selectUsername);
   for (let i = 0; i < listUserName.length; i++) {
     if (username === listUserName[i].UserName) {
-      // errors.push("Username existed, try another one");
       res.json({
         userName: username,
         errUser: "Username existed, try another one",

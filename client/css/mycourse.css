@@ -96,7 +96,7 @@ menu .user:hover {
   justify-content: space-evenly;
   grid-template-columns: auto auto auto;
   gap: 10px;
-  margin: 80px auto 60px;
+  margin: 80px auto 50px;
   padding: 40px 40px 40px 30px;
   width: 100%;
 
@@ -154,7 +154,7 @@ footer {
   background-color: rgba(220, 220, 220, 0.596);
   font-family: "Courier New", Courier, monospace;
   /* position: absolute;
-  bottom: 0; */
+    bottom: 0; */
   /* bottom: 100%; */
 }
 

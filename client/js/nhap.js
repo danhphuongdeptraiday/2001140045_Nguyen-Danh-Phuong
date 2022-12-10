@@ -18,3 +18,15 @@
 //     clearInterval(t);
 //   }
 // }
+
+// takeEnrollCourse(5, 5);
+
+// function takeEnrollCourse(userid, courseid) {
+//   fetch(`http://localhost:3000/api/enroll/${userid}/${courseid}`, {
+//     method: "GET",
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//     });
+// }

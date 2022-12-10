@@ -1,5 +1,4 @@
-console.log(document.cookie.split("=")[1]);
-let api = "http://localhost:3000/api/all/courses";
+let api = "http://localhost:3000/api/my/courses";
 
 let userIcon = document.querySelector(".fa-user");
 let userContainer = document.querySelector(".user");
@@ -33,6 +32,7 @@ if (document.cookie) {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       let courseContainer = document.querySelector(".container");
       for (let i = 0; i < data.length; i++) {
         let divCourse = document.createElement("div");
@@ -51,21 +51,10 @@ if (document.cookie) {
         courseContainer.append(divCourse);
       }
 
-      let listDivCourse = document.querySelectorAll(".courses #enroll");
-      for (let i = 0; i < listDivCourse.length; i++) {
-        listDivCourse[i].addEventListener("click", () => {
-          takeEnrollCourse(
-            document.cookie.split("=")[1],
-            listDivCourse[i].parentElement.getAttribute("id")
-          );
-          console.log(listDivCourse[i].parentElement.getAttribute("id"));
-          listDivCourse[i].parentElement.remove();
-        });
-      }
-
       if (data.length <= 3) {
         document.querySelector("footer").style.position = "fixed";
         document.querySelector("footer").style.bottom = "0px";
+        console.log(document.querySelector(".container"));
         document.querySelector(".container").style.marginTop = "40px";
       }
 
@@ -82,16 +71,4 @@ if (document.cookie) {
   document.querySelector("footer").style.position = "fixed";
   document.querySelector("footer").style.bottom = "0px";
   console.log(document.querySelector(".container"));
-}
-
-function takeEnrollCourse(username, courseid) {
-  console.log(username + " -- " + courseid);
-
-  fetch(`http://localhost:3000/api/enroll/${username}/${courseid}`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });
 }

@@ -34,10 +34,9 @@ if (document.cookie) {
     }
   });
   logout.addEventListener("click", () => {
-    console.log("123");
     document.cookie =
       "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    location.reload();
+    window.location.href = "login.html";
   });
   document.getElementById("register").removeAttribute("href");
   document.getElementById("login").removeAttribute("href");
