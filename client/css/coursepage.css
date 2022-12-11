@@ -96,35 +96,11 @@ menu .user:hover {
   justify-content: space-evenly;
   grid-template-columns: auto auto auto;
   gap: 10px;
-  margin: 80px auto 50px;
+  margin: 80px auto 60px;
   padding: 40px 40px 40px 30px;
   width: 100%;
 
   /* background-color: rgb(149, 149, 149); */
-}
-
-.unloginPage {
-  width: 40%;
-  height: 300px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 80px;
-}
-
-.loginToSee {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.loginToSee h1 {
-  text-align: center;
 }
 
 .courses {

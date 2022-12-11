@@ -212,13 +212,18 @@ app.post("/api/register", async (req, res) => {
   db.close();
 });
 
-app.get("/abc", async (req, res) => {
+app.get("/api/course/:courseid/quizes", async (req, res) => {
   let db = await getDBconnection();
-  let s = await db.all(
-    "select * from Course where courseId not in (select courseId from enrollment where userId = 1)"
-  );
-  res.send(s);
-  console.log(s);
+  let courseid = req.params.courseid;
 });
+
+// app.get("/abc", async (req, res) => {
+//   let db = await getDBconnection();
+//   let s = await db.all(
+//     "select * from Course where courseId not in (select courseId from enrollment where userId = 1)"
+//   );
+//   res.send(s);
+//   console.log(s);
+// });
 
 app.listen(port, () => console.log(`Listening on ${port} `));
