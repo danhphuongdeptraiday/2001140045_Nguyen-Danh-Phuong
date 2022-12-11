@@ -21,18 +21,11 @@ app.use(
 app.use(express.json());
 
 // app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "client")));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(multer().none());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static("client"));
-
-app.engine(
-  "hbs",
-  exphbs.engine({
-    extname: ".hbs",
-  })
-);
+app.use(express.static("public"));
 
 async function getDBconnection() {
   const db = await sqlite.open({
@@ -114,7 +107,7 @@ app.get("/api/enroll/:username/:courseid", async (req, res) => {
 
 // Login
 app.get("/api/login", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/html/login.html"));
+  res.sendFile(path.join(__dirname + "/public/html/login.html"));
 });
 
 app.post("/api/login", async (req, res) => {
@@ -151,11 +144,11 @@ app.post("/api/login", async (req, res) => {
 
 // Register
 app.get("/api/register", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/html/register.html"));
+  res.sendFile(path.join(__dirname + "/public/html/register.html"));
 });
 
 app.get("/api/home", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/html/home.html"));
+  res.sendFile(path.join(__dirname + "/public/html/home.html"));
 });
 
 app.post("/api/register", async (req, res) => {

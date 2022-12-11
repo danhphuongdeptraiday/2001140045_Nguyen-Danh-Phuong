@@ -4,7 +4,11 @@ let api = "http://localhost:3000/api/all/courses";
 let userIcon = document.querySelector(".fa-user");
 let userContainer = document.querySelector(".user");
 let logout = document.querySelector(".logout");
+let t = document.querySelector(".container");
+let t1 = document.querySelector(".loginToSee");
 if (document.cookie) {
+  t1.style.display = "none";
+  t.className = "container";
   userIcon.style.display = "none";
   let h1 = document.createElement("h1");
   h1.style.fontSize = "16px";
@@ -75,6 +79,8 @@ if (document.cookie) {
   document.getElementById("register").removeAttribute("href");
   document.getElementById("login").removeAttribute("href");
 } else {
+  t.className = "unloginPage";
+
   document.getElementById("register").href = "../html/register.html";
   document.getElementById("login").href = "../html/login.html";
   logout.style.display = "none";
